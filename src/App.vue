@@ -1,5 +1,5 @@
 <template>
-
+  <online-vn/>
 </template>
 
 <style>
