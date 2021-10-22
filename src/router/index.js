@@ -1,4 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import FrontPage from '../views/FrontPage.vue'
+import NovelLibrary from '../views/NovelLibrary.vue'
+import NovelInfo from '../views/NovelInfo.vue'
+import Editor from '../views/Editor.vue'
+import About from '../views/About.vue'
 
 const routes = [
   {
@@ -12,7 +17,12 @@ const routes = [
     component: NovelLibrary
   },
   {
-    path: '/novel/:id',
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    path: '/library/:id',
     name: 'Novel info',
     component: NovelInfo
   },
