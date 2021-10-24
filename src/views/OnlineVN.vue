@@ -1,7 +1,9 @@
 <template>
     <div class="online-vn">
         <base-header/>
-        <router-view/>
+        <div class="body">
+            <router-view/>
+        </div>
         <base-footer/>
     </div>
 </template>
@@ -25,5 +27,9 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+.body {
+    padding: 10px;
 }
 </style>
