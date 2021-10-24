@@ -22,5 +22,8 @@ export default {
 <style>
 .online-vn {
     background-color: #343434;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 </style>
