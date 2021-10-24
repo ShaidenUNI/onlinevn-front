@@ -1,5 +1,4 @@
 <template>
-    <h1>Front page</h1>
     <novel-card/>
 </template>
 
