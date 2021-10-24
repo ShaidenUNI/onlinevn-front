@@ -1,5 +1,7 @@
 <template>
-    <h1>Base footer</h1>
+    <div class="footer">
+        Base footer
+    </div>
 </template>
 
 <script>
@@ -13,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+.footer {
+    margin-top: auto;
+}
 </style>
