@@ -16,6 +16,7 @@
             <i class="fab fa-twitter"></i>
             <i class="fab fa-instagram"></i>
             <i class="fab fa-vk"></i>
+            <a href="https://github.com/ShaidenUNI/onlinevn-front"><i class="fab fa-github"></i></a>
         </div>
         <div class="extra">
             Условия пользования
@@ -68,5 +69,9 @@ export default {
     display: flex;
     font-size: 26px;
     gap: 10px;
+    color: inherit;
+}
+a:visited {
+    color: inherit;
 }
 </style>
