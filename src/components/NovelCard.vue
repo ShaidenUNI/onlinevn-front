@@ -28,7 +28,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="views">
-                    {{ views }}
+                    {{ Math.abs(views) > 999 ? ((Math.abs(views)/1000).toFixed(1)) + 'k' : Math.abs(views) }}
                     <i class="fas fa-eye"></i>
                 </div>
             </div>
@@ -45,7 +45,7 @@ export default {
             status: 'Завершен',
             cardImage: 'https://via.placeholder.com/315x140',
             rating: 3.29,
-            views: 11231
+            views: 11231,
         }
     }
 }
