@@ -1,10 +1,21 @@
 <template>
     <div class="footer">
         <div class="stats">
-            Статистика
+            <div class="numbers">
+                <p> {{ novelCount }}</p>
+                <p> {{ assetCount }}</p>
+                <p> {{ frameCount }}</p>
+            </div>
+            <div class="words">
+                <p>визуальных новелл</p>
+                <p>уникальных ассетов</p>
+                <p>фреймов</p>
+            </div>
         </div>
         <div class="media">
-            Медиа
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-vk"></i>
         </div>
         <div class="extra">
             Условия пользования
@@ -13,10 +24,12 @@
 </template>
 
 <script>
+import '../../node_modules/@fortawesome/fontawesome-free/js/all.min.js'
+
 export default {
     data() {
         return {
-            novelCount: 37,
+            novelCount: 37, // get dynamically later
             assetCount: 451,
             frameCount: 1598,
         }
@@ -26,6 +39,10 @@ export default {
 
 <style scoped>
 .footer {
+    font-family: 'Roboto Condensed', serif;
+    font-size: 18px;
+    color: #cacaca;
+
     margin-top: auto;
     background-color: #232323;
     border-top: 2px solid #545454;
@@ -35,5 +52,21 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     place-items: center;
+}
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    line-height: 1.5rem;
+}
+.numbers {
+    text-align: end;
+    color: #ffffff;
+    font-weight: 700;
+}
+.media {
+    display: flex;
+    font-size: 26px;
+    gap: 10px;
 }
 </style>
