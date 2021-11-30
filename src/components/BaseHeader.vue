@@ -11,6 +11,9 @@
                 <header-button msg="О нас"/>
             </router-link>
             <search-bar/>
+            <router-link :to="{ name: 'Admin' }">
+                <header-button msg="Админка"/>
+            </router-link>
         </div>
         <div class="right">
             <create-novel-button/>

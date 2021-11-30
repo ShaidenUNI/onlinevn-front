@@ -4,6 +4,7 @@ import NovelLibrary from '../views/NovelLibrary.vue'
 import NovelInfo from '../views/NovelInfo.vue'
 import Editor from '../views/Editor.vue'
 import About from '../views/About.vue'
+import AdminPanel from '../views/AdminPanel.vue'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: 'Editor',
     component: Editor
   },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: AdminPanel
+  }
 ]
 
 const router = createRouter({
