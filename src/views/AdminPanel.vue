@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios'
+import { onMounted } from "vue"
 
 let API_URL = 'http://localhost:8081'
 let genreAmount = 6
@@ -27,8 +28,10 @@ export default {
             novels: [],
         }
     },
-    mounted () {
-        this.getNovels()
+    setup() {
+        onMounted (() => {
+            this.getNovels()
+        })
     },
     methods: {
         getNovels() {
