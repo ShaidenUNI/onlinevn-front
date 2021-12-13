@@ -10,7 +10,13 @@
     </div>
     <div class="novel-list">
         <div v-for="novel in novels" :key="novel.id" class="novel-item">
-            id: {{ novel.id }}, Name: {{ novel.name }}, Desc: {{ novel.description }}, Views: {{ novel.viewCount}}
+            <div class="content">
+                <router-link :to="{ name: 'Novel info', params: { id: novel.id } }">
+                    <button>Открыть</button>
+                </router-link>
+                id: {{ novel.id }}, Name: {{ novel.name }}, Desc: {{ novel.description }}, Views: {{ novel.viewCount}}
+            </div>
+            <button @click="deleteCurrent(novel.id)">Удалить</button>
         </div>
     </div>
 </template>
@@ -31,9 +37,6 @@ export default {
             novels: [],
         }
     },
-    setup() {
-
-    },
     methods: {
         getNovels() {
             axios.get(API_URL + '/novel')
@@ -49,7 +52,9 @@ export default {
                 name: this.randomText(10),
                 description: this.randomText(60),
                 genre: Math.floor(Math.random() * genreAmount),
-                viewCount: Math.floor(Math.random() * 30000)
+                viewCount: Math.floor(Math.random() * 30000),
+                rating: Math.random() * 5.0,
+                status: Math.floor(Math.random() * 4),
             }
             axios.post(API_URL + '/novel', novel)
                 .then(() => {
@@ -59,6 +64,13 @@ export default {
         },
         deleteLastNovel() {
             axios.delete(API_URL + '/novel/' + this.novels[this.novels.length - 1].id)
+                .then(() => {
+                    this.getNovels()
+                })
+                .catch(error => console.log(error))
+        },
+        deleteCurrent(id) {
+            axios.delete(API_URL + '/novel/' + id)
                 .then(() => {
                     this.getNovels()
                 })
@@ -80,7 +92,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .buttons {
     display: flex;
     gap: 10px;
@@ -94,11 +106,23 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    .novel-item {
+        display: flex;
+        gap: 5px;
+        font-family: 'Roboto', sans-serif;
+        background-color: #cecece;
+        padding: 4px;
+        justify-content: space-between;
+
+        button {
+            padding: 5px;
+        }
+
+        .content {
+            align-self: center;
+        }
+    }
 }
 
-.novel-item {
-    font-family: 'Roboto', sans-serif;
-    background-color: #cecece;
-    padding: 4px;
-}
 </style>

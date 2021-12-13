@@ -1,4 +1,7 @@
 <template>
+    <router-link
+        :to="{ name: 'Novel info', params: { id: id } }"
+        style="text-decoration: none; color: inherit;">
     <div class="card">
         <img :src="cardImage" :alt="'img: ' + name">
         <div class="info">
@@ -10,10 +13,10 @@
                 <div
                 class="status"
                 :class="{
-                    done: status == 'Завершен',
-                    wip: status == 'В процессе',
-                    frozen: status == 'Заморожен',
-                    grave: status == 'Брошен'
+                    done: status == 0,
+                    wip: status == 1,
+                    frozen: status == 2,
+                    grave: status == 3
                 }">
                     {{ parseStatus(status) }}
                 </div>
@@ -34,11 +37,16 @@
             </div>
         </div>
     </div>
+    </router-link>
 </template>
 
 <script>
 export default {
     props: {
+        id: {
+            type: Number,
+            default: 0
+        },
         name: {
             type: String,
             default: '?Name?'
@@ -52,8 +60,8 @@ export default {
             default: 0
         },
         status: {
-            type: String,
-            default: 'Завершен'
+            type: Number,
+            default: 0
         },
         rating: {
             type: Number,
@@ -126,68 +134,78 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card {
+    &:hover {
+        cursor: pointer;
+    }
+
     font-family: 'Roboto';
     display: flex;
     flex-direction: column;
     width: 315px;
     height: 200px;
     color: white;
+
+    img:hover {
+        filter: brightness(90%);
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 7px;
+        background-color: #202020;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .top {
+        display: flex;
+        gap: 5px;
+        align-items: flex-end;
+    }
+
+    .name {
+        font-weight: 700;
+    }
+
+    .genre {
+        font-size: smaller;
+        text-decoration: none;
+    }
+
+    .bottom {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .status {
+        background-color: aquamarine;
+        color: black;
+        border-radius: 10px;
+        padding: 0 8px;
+    }
+
+    .done { background-color: #4BCE1D; }
+    .wip { background-color: #1DA4CE; }
+    .frozen { background-color: #cacaca; }
+    .grave { background-color: #C5451D; }
+
+    .stars {
+        display: flex;
+        font-size: smaller;
+        color: #FFF511;
+        overflow: hidden;
+        width: 75px;
+    }
+
+    .views {
+        margin-left: auto;
+        color: #707070;
+    }
 }
 
-.info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 7px;
-    background-color: #202020;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-
-.top {
-    display: flex;
-    gap: 5px;
-    align-items: flex-end;
-}
-
-.name {
-    font-weight: 700;
-}
-
-.genre {
-    font-size: smaller;
-}
-
-.bottom {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-
-.status {
-    background-color: aquamarine;
-    color: black;
-    border-radius: 10px;
-    padding: 0 8px;
-}
-
-.done { background-color: #4BCE1D; }
-.wip { background-color: #1DA4CE; }
-.frozen { background-color: #cacaca; }
-.grave { background-color: #C5451D; }
-
-.stars {
-    display: flex;
-    font-size: smaller;
-    color: #FFF511;
-    overflow: hidden;
-    width: 75px;
-}
-
-.views {
-    margin-left: auto;
-    color: #707070;
-}
 </style>

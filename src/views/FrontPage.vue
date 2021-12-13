@@ -1,7 +1,9 @@
 <template>
-    <div class="novel-cards">
-        <div v-for="novel in novels" :key="novel.id">
-            <novel-card v-bind="novel" />
+    <div class="front-page">
+        <div class="novel-cards">
+            <div v-for="novel in novels" :key="novel.id">
+                <novel-card v-bind="novel" />
+            </div>
         </div>
     </div>
 </template>
@@ -29,7 +31,6 @@ export default {
                 .get(API_URL + '/novel')
                 .then((response) => {
                     this.novels = response.data
-                    console.log(this.novels)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -40,9 +41,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.novel-cards {
+.front-page {
+    width: 1024px;
+    margin: 0 auto;
     display: flex;
-    gap: 10px;
-    flex-flow: row wrap;
+
+    .novel-cards {
+        display: flex;
+        gap: 10px;
+        flex-flow: row wrap;
+    }
 }
 </style>
