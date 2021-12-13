@@ -17,21 +17,22 @@
 
 <script>
 import axios from 'axios'
-import { onMounted } from "vue"
 
 let API_URL = 'http://localhost:8081'
 let genreAmount = 6
 
 export default {
+    name: 'AdminPanel',
+    created () {
+        this.getNovels()
+    },
     data() {
         return {
             novels: [],
         }
     },
     setup() {
-        onMounted (() => {
-            this.getNovels()
-        })
+
     },
     methods: {
         getNovels() {
