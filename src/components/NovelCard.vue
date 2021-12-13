@@ -4,7 +4,7 @@
         <div class="info">
             <div class="top">
                 <div class="name"> {{ name }}</div>
-                <div class="genre"> {{ genre }}</div>
+                <div class="genre"> {{ parseGenre(genre) }}</div>
             </div>
             <div class="bottom">
                 <div
@@ -15,7 +15,7 @@
                     frozen: status == 'Заморожен',
                     grave: status == 'Брошен'
                 }">
-                    {{ status }}
+                    {{ parseStatus(status) }}
                 </div>
                 <div
                 class="stars"
@@ -28,7 +28,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="views">
-                    {{ Math.abs(views) > 999 ? ((Math.abs(views)/1000).toFixed(1)) + 'k' : Math.abs(views) }}
+                    {{ Math.abs(viewCount) > 999 ? ((Math.abs(viewCount)/1000).toFixed(1)) + 'k' : Math.abs(viewCount) }}
                     <i class="fas fa-eye"></i>
                 </div>
             </div>
@@ -38,16 +38,91 @@
 
 <script>
 export default {
+    props: {
+        name: {
+            type: String,
+            default: '?Name?'
+        },
+        description: {
+            type: String,
+            default: '?Description?'
+        },
+        genre: {
+            type: Number,
+            default: 0
+        },
+        status: {
+            type: String,
+            default: 'Завершен'
+        },
+        rating: {
+            type: Number,
+            default: 5
+        },
+        viewCount: {
+            type: Number,
+            default: 0
+        },
+        cardImage: {
+            type: String,
+            default: 'https://via.placeholder.com/315x140'
+        }
+    },
     data () {
         return {
-            name: 'Когда плачут цикады',
-            genre: 'драма',
-            status: 'Завершен',
-            cardImage: 'https://via.placeholder.com/315x140',
-            rating: 3.29,
-            views: 11231,
+
         }
-    }
+    },
+    methods: {
+        parseGenre(genreNumber) {
+            let genre = Number.toString(genreNumber)
+            switch (genreNumber) {
+                case 0:
+                    genre = 'Приключения'
+                    break
+                case 1:
+                    genre = 'Романтика'
+                    break
+                case 2:
+                    genre = 'Драма'
+                    break
+                case 3:
+                    genre = 'Повседневность'
+                    break
+                case 4:
+                    genre = 'Исекай'
+                    break
+                case 5:
+                    genre = 'Эроге'
+                    break
+                default:
+                    break
+            }
+
+            return genre
+        },
+        parseStatus(statusNumber) {
+            let status = Number.toString(statusNumber)
+            switch (statusNumber) {
+                case 0:
+                    status = 'Завершен'
+                    break
+                case 1:
+                    status = 'В процессе'
+                    break
+                case 2:
+                    status = 'Заморожен'
+                    break
+                case 3:
+                    status = 'Брошено'
+                    break
+                default:
+                    status = 'В процессе'
+                    break
+            }
+            return status
+        }
+    },
 }
 </script>
 
